@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huasion.repository.MenuRepository">
+
+	<resultMap id="menuMap" type="com.huasion.entity.Menu">
+		<id column="id" property="id"></id>
+		<id column="name" property="name"></id>
+		<id column="price" property="price"></id>
+		<id column="flavor" property="flavor"></id>
+		<association property="type" select="com.huasion.repository.TypeRepository.findById" column="tid"></association>
+	</resultMap>
+
+	<select id="findById" parameterType="long" resultMap="menuMap">
+		select * from t_menu where id = #{id}
+	</select>
+
+</mapper>
